@@ -21,11 +21,17 @@ app.config.suppress_callback_exceptions = True
 
 # Load data from csv
 def load_data():
-    # To do: Completar la funciÃ³n 
-    
+    # Cargar el archivo CSV
+    df = pd.read_csv("datos_energia.csv")
 
-# Cargar datos
-data = load_data()
+    # Convertir la columna de fecha a tipo datetime
+    df['fecha'] = pd.to_datetime(df['fecha'])
+
+    # Establecer la columna de fecha como índice
+    df.set_index('fecha', inplace=True)
+
+    return df
+
 
 # Graficar serie
 def plot_series(data, initial_date, proy):
